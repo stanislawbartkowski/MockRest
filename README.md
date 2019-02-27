@@ -17,5 +17,6 @@ The dependecy is resolved using *iy* Eclipse plugin. Install the plugin beforeha
 
 # Client
 ## Prerequisites
-* Python 3 (tested with Python 3.6 level)
+* Python 3 (tested with Python 3.6 level)<br>
+> yum install python36
 
