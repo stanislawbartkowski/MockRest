@@ -1,6 +1,6 @@
 # MockRest
 
-Simply solution to mock network traffic as POST request. Can be easily extended to more HTTP methods.<br><br>
+Simply solution to mock network traffic as HTTP POST request. Can be easily extended to more HTTP methods.<br><br>
 The solution as provided as two Eclipse projects: the server and the client. 
 The server part is a simple servlet which accepts file uploading and POST request. The target war file can be deployed to Tomcat container.
 The client is Python 3 script.
