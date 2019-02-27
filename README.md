@@ -20,7 +20,7 @@ The dependecy is resolved using *iy* Eclipse plugin. Install the plugin beforeha
 * Python 3 (tested with Python 3.6 level)<br>
 > yum install python36<br>
 
-*requests* package
+* *requests* package
 >  yum install python36-pip<br>
 > python36 -m pip install requests<br>
 
