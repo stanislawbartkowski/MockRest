@@ -17,5 +17,5 @@ The dependecy is resolved using *iy* Eclipse plugin. Install the plugin beforeha
 
 # Client
 ## Prerequisites
-* Python 3.7
+* Python 3.6
 
