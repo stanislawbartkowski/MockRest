@@ -9,7 +9,7 @@ import os
 from pathlib import Path
 
 #SERVERHOST="localhost"
-SERVERHOST="streams43.sb.com"
+SERVERHOST="streams43.sb.com:8080"
 APPNAME="RestMockServer"
 
 class RestError(Exception): 
@@ -25,8 +25,8 @@ class RestError(Exception):
 
 
 def __getRestURL(rest="rest"):
-    if rest : return "http://"+ SERVERHOST + ":8080/" + APPNAME + "/rest"
-    return "http://"+ SERVERHOST + ":8080/" + APPNAME
+    if rest : return "http://"+ SERVERHOST + "/" + APPNAME + "/rest"
+    return "http://"+ SERVERHOST + "/" + APPNAME
 
 def __getText(r):
     if r.status_code == 204 : return ""

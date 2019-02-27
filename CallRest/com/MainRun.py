@@ -5,15 +5,79 @@ Created on 27 lut 2019
 '''
 
 from com.rest import Rest as R
+import time
+import sys
 
+# __runTest1
+# number of iterations
 NO=1000
 
-def __runRest1() :
-    for i in range(NO) :
-        res = R.postContent("Hello")
-        if i % 100 == 0 : print(i)
-#        print(res)
-#        print(i)
+# __runTest2
+# time elapsed
+SEC = 5 * 60
 
+class runRest :
+    
+    def __init__(self):
+        self.start = time.time()
+        self.no = 0
+        
+    def _printProgress(self):
+        end = time.time()
+        print("Number of calls:",self.no)
+        print("Time elapsed:",(end -self.start))
+        print("Calls/sec",self.no / (end-self.start))
+        
+    def __progress(self):
+        if self.no % 500 == 0 :
+            self._printProgress()
+            print("-------------")
+            
+        
+    def runIter(self):
+        for self.no in range(NO) :
+            self.restTest()
+            self.__progress()
+        self.no = NO
+        
+    def runTime(self):
+        while time.time() - self.start < SEC :
+            self.restTest()
+            self.__progress()
+            self.no = self.no + 1
+        
+    def printResult(self):
+        print("=============")
+        self._printProgress()
+        
+    def restTest(self):
+        res = R.postContent("Hello")
+
+def printHelp() :
+    print("Parameters:")
+    print(" 1 : number of iterations: ",NO)
+    print(" 2 : time elapsed. Number of seconds:",SEC)
+    print("Example:")
+    print(" MainRun.py 1")
+    sys.exit()
+    
+        
 if __name__ == '__main__':
-    __runRest1()
+    if len(sys.argv) != 2 : 
+        printHelp()
+    
+    test = sys.argv[1]
+    if test == "1" :
+        r = runRest()
+        r.runIter()
+    elif test == "2":
+        r = runRest()
+        r.runTime()
+    else :
+        printHelp()
+        
+    r.printResult() 
+        
+        
+    
+        
