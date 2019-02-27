@@ -51,3 +51,6 @@ Ran 3 tests in 0.021s
 OK
 
 ```
+## Run Rest/HTTP client
+> cd MockRest/CallRest<br>
+> PYTHONPATH=. python36 com/MainRun.py<br>
