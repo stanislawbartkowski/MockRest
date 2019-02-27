@@ -18,7 +18,11 @@ The dependecy is resolved using *iy* Eclipse plugin. Install the plugin beforeha
 # Client
 ## Prerequisites
 * Python 3 (tested with Python 3.6 level)<br>
-> yum install python36
+> yum install python36<br>
+
+*requests* package
+>  yum install python36-pip<br>
+> python36 -m pip install requests<br>
 
 ## Run test
 > cd MockRest/CallRest/test/rest<br>
