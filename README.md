@@ -33,7 +33,7 @@ APPNAME="RestMockServer"
 ```
 Modify the host name where MockServiceApi is running and the application name in Tomcat
 
-## Run test
+## Run unit test
 > cd MockRest/CallRest/test/rest<br>
 > PYTHONPATH=../..   python36 -m unittest Test1.py 
 ```
