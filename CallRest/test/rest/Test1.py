@@ -21,4 +21,20 @@ class Test(unittest.TestCase):
     def testFileBig(self):
         res = R.uploadFile("upgrade-error.txt")
         print(res)
+        
+    def testReset(self):
+        R.resetCounter()
+        
+    def testgetCounter(self):
+        val = R.getCounter()
+        print(val)
+        
+    def testCounter(self):
+        R.resetCounter()
+        R.postContent("Hello")
+        R.postContent("Hello")
+        R.postContent("Hello")
+        val = R.getCounter()
+        print(val)
+        self.assertEqual(val, "3", "Three expected after reset")
 

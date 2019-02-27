@@ -6,9 +6,8 @@ Created on 27 lut 2019
 
 import requests
 import os
-from pathlib import Path
 
-#SERVERHOST="localhost"
+#SERVERHOST="localhost:8080"
 SERVERHOST="streams43.sb.com:8080"
 APPNAME="RestMockServer"
 
@@ -37,6 +36,10 @@ def __getRest(url):
     r = requests.get(url)
     return __getText(r)
 
+def __getRequest(rest):
+    url = __getRestURL() + "/" + rest
+    return __getRest(url)
+
 def __postContent(rest,content):
     url = __getRestURL() + "/" + rest + "?content=" + content
     r = requests.post(url)
@@ -53,3 +56,8 @@ def uploadFile(filename) :
     r = requests.post(url,files=files)
     return __getText(r)
 
+def resetCounter():
+    __getRequest("resetcounter")
+    
+def getCounter():
+    return __getRequest("counter")    
