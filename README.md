@@ -15,6 +15,13 @@ You can also download the whole Eclipse project and extend according to your nee
 
 The dependecy is resolved using *iy* Eclipse plugin. Install the plugin beforehand.
 
+* POST request
+> curl -X POST  http://localhost:8080/RestMockServer/rest/postform?content=Hello
+
+* File upload
+> curl -F 'data=@file.txt' http://localhost:8080/RestMockServer/upload
+
+
 # Client
 ## Prerequisites
 * Python 3 (tested with Python 3.6 level)<br>
