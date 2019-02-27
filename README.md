@@ -21,6 +21,11 @@ The dependecy is resolved using *iy* Eclipse plugin. Install the plugin beforeha
 * File upload
 > curl -F 'data=@file.txt' http://localhost:8080/RestMockServer/upload
 
+There is an internal counter scoring the number of POST requests received
+* Reset counter
+> curl -X GET  http://localhost:8080/RestMockServer/rest/resetcounter
+* The current value of the counter
+> curl -X GET  http://localhost:8080/RestMockServer/rest/counter
 
 # Client
 ## Prerequisites
