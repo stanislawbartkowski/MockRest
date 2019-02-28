@@ -4,23 +4,29 @@ Created on 27 lut 2019
 @author: sbartkowski
 '''
 
-from com.rest import Rest as R
+from com.rest import Rest
 import time
 import sys
 
 # __runTest1
 # number of iterations
+#NO=1000
 NO=1000
 
 # __runTest2
 # time elapsed
 SEC = 5 * 60
 
+#SERVERHOST="thinkde:8080"
+#APPNAME="RestMockServer"
+
+
 class runRest :
     
-    def __init__(self):
+    def __init__(self,server,app):
         self.start = time.time()
         self.no = 0
+        self.R = Rest.RestApi(server,app)
         
     def _printProgress(self):
         end = time.time()
@@ -51,27 +57,30 @@ class runRest :
         self._printProgress()
         
     def restTest(self):
-        res = R.postContent("Hello")
+        res = self.R.postContent("Hello")
 
 def printHelp() :
-    print("Parameters:")
+    print("Parameters: /what/ /server/ /appname/")
     print(" 1 : number of iterations: ",NO)
     print(" 2 : time elapsed. Number of seconds:",SEC)
     print("Example:")
-    print(" MainRun.py 1")
+    print(" MainRun.py 1 localhost:8080 RestMockServer ")
     sys.exit()
     
         
 if __name__ == '__main__':
-    if len(sys.argv) != 2 : 
+    if len(sys.argv) != 4 : 
         printHelp()
-    
+        
     test = sys.argv[1]
+    server = sys.argv[2]
+    app = sys.argv[3]
+    
     if test == "1" :
-        r = runRest()
+        r = runRest(server,app)
         r.runIter()
     elif test == "2":
-        r = runRest()
+        r = runRest(server,app)
         r.runTime()
     else :
         printHelp()

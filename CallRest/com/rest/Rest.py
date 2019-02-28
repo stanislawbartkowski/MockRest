@@ -7,10 +7,6 @@ Created on 27 lut 2019
 import requests
 import os
 
-#SERVERHOST="localhost:8080"
-SERVERHOST="streams43.sb.com:8080"
-APPNAME="RestMockServer"
-
 class RestError(Exception): 
   
     # Constructor or Initializer 
@@ -22,42 +18,47 @@ class RestError(Exception):
     def __str__(self): 
         return(self.err + " " + self.errmess) 
 
+class RestApi :
 
-def __getRestURL(rest="rest"):
-    if rest : return "http://"+ SERVERHOST + "/" + APPNAME + "/rest"
-    return "http://"+ SERVERHOST + "/" + APPNAME
+    def __init__(self,host,appname):
+        self.SERVERHOST = host
+        self.APPNAME = appname
 
-def __getText(r):
-    if r.status_code == 204 : return ""
-    if r.status_code != 200 : raise(RestError("Error while reading REST data",str(r.content)))
-    return r.text
+    def __getRestURL(self,rest="rest"):
+        if rest : return "http://"+ self.SERVERHOST + "/" + self.APPNAME + "/rest"
+        return "http://"+ self.SERVERHOST + "/" + self.APPNAME
 
-def __getRest(url):
-    r = requests.get(url)
-    return __getText(r)
+    def __getText(self,r):
+        if r.status_code == 204 : return ""
+        if r.status_code != 200 : raise(RestError("Error while reading REST data",str(r.content)))
+        return r.text
 
-def __getRequest(rest):
-    url = __getRestURL() + "/" + rest
-    return __getRest(url)
+    def __getRest(self,url):
+        r = requests.get(url)
+        return self.__getText(r)
 
-def __postContent(rest,content):
-    url = __getRestURL() + "/" + rest + "?content=" + content
-    r = requests.post(url)
-    return __getText(r)
+    def __getRequest(self,rest):
+        url = self.__getRestURL() + "/" + rest
+        return self.__getRest(url)
 
-def postContent(content):
-    return __postContent("postform", content)
+    def __postContent(self,rest,content):
+        url = self.__getRestURL() + "/" + rest + "?content=" + content
+        r = requests.post(url)
+        return self.__getText(r)
 
-def uploadFile(filename) :
-    c = os.path.dirname(os.path.abspath(__file__))
-    fname = os.path.join(c,"../../resource/",filename)
-    files = { 'file' : open(fname,'r')}
-    url = __getRestURL(None) + "/upload"
-    r = requests.post(url,files=files)
-    return __getText(r)
+    def postContent(self,content):
+        return self.__postContent("postform", content)
 
-def resetCounter():
-    __getRequest("resetcounter")
+    def uploadFile(self,filename) :
+        c = os.path.dirname(os.path.abspath(__file__))
+        fname = os.path.join(c,"../../resource/",filename)
+        files = { 'file' : open(fname,'r')}
+        url = self.__getRestURL(None) + "/upload"
+        r = requests.post(url,files=files)
+        return self.__getText(r)
+
+    def resetCounter(self):
+        self.__getRequest("resetcounter")
     
-def getCounter():
-    return __getRequest("counter")    
+    def getCounter(self):
+        return self.__getRequest("counter")    

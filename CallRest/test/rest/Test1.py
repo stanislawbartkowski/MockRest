@@ -4,37 +4,43 @@ Created on 27 lut 2019
 @author: sbartkowski
 '''
 import unittest
-from com.rest import Rest as R
+from com.rest import Rest
+
+SERVERHOST="thinkde:8080"
+APPNAME="RestMockServer"
 
 
 class Test(unittest.TestCase):
 
 
+    def setUp(self):
+        self.R = Rest.RestApi(SERVERHOST,APPNAME) 
+
     def testName(self):
-        res = R.postContent("Hello")
+        res = self.R.postContent("Hello")
         print(res)
         
     def testFile(self):
-        res = R.uploadFile("f.txt")
+        res = self.R.uploadFile("f.txt")
         print(res)
 
     def testFileBig(self):
-        res = R.uploadFile("upgrade-error.txt")
+        res = self.R.uploadFile("upgrade-error.txt")
         print(res)
         
     def testReset(self):
-        R.resetCounter()
+        self.R.resetCounter()
         
     def testgetCounter(self):
-        val = R.getCounter()
+        val = self.R.getCounter()
         print(val)
         
     def testCounter(self):
-        R.resetCounter()
-        R.postContent("Hello")
-        R.postContent("Hello")
-        R.postContent("Hello")
-        val = R.getCounter()
+        self.R.resetCounter()
+        self.R.postContent("Hello")
+        self.R.postContent("Hello")
+        self.R.postContent("Hello")
+        val = self.R.getCounter()
         print(val)
         self.assertEqual(val, "3", "Three expected after reset")
 
