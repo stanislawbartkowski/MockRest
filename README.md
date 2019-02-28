@@ -66,3 +66,6 @@ OK
 ## Run Rest/HTTP client
 > cd MockRest/CallRest<br>
 > PYTHONPATH=. python36 com/MainRun.py<br>
+
+* run.sh Single run
+* runattack.sh Launch a seriers of  *run.sh* in parallel
