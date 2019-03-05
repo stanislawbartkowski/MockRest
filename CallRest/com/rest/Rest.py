@@ -41,13 +41,16 @@ class RestApi :
         url = self.__getRestURL() + "/" + rest
         return self.__getRest(url)
 
-    def __postContent(self,rest,content):
+
+
+    def __postContent(self,rest,content,cookies = None):
         url = self.__getRestURL() + "/" + rest + "?content=" + content
-        r = requests.post(url)
+        if cookies : r = requests.post(url,cookies=cookies)
+        else : r = requests.post(url)
         return self.__getText(r)
 
-    def postContent(self,content):
-        return self.__postContent("postform", content)
+    def postContent(self,content,cookies=None):
+        return self.__postContent("postform", content,cookies)
 
     def uploadFile(self,filename) :
         c = os.path.dirname(os.path.abspath(__file__))
