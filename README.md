@@ -46,6 +46,7 @@ Modify the hostname and the application name in Tomcat server.
 SERVERHOST="localhost:8080"
 APPNAME="RestMockServer"
 ```
+Run the test.<br>
 
 > cd MockRest/CallRest/test/rest<br>
 > PYTHONPATH=../..   python36 -m unittest Test1.py 
