@@ -36,16 +36,17 @@ There is an internal counter scoring the number of POST requests received
 > yum install python36-pip<br>
 > python36 -m pip install requests<br>
 
-## Customize
-> cd MockRest/CallRest<br>
-> vi com/rest/Rest.py
+## Run unit test
+
+Modify the hostname and the application name in Tomcat server.
+
+> cd MockRest/CallRest/test/rest<br>
+> vi Test1.py<br>
 ```
-SERVERHOST="localhost"
+SERVERHOST="localhost:8080"
 APPNAME="RestMockServer"
 ```
-Modify the host name where MockServiceApi is running and the application name in Tomcat
 
-## Run unit test
 > cd MockRest/CallRest/test/rest<br>
 > PYTHONPATH=../..   python36 -m unittest Test1.py 
 ```
